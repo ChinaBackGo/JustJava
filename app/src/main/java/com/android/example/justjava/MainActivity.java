@@ -3,6 +3,8 @@ package com.android.example.justjava;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.text.NumberFormat;
@@ -41,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
     */
     public void submitOrder(View view) {
         int price = calculatePrice();
-        String message = createOrderSummary(price);
+        CheckBox whippedCheckBox = (CheckBox) findViewById(R.id.whipped_topping_checkbox);
+        CheckBox chocolateCheckbox = (CheckBox) findViewById(R.id.chocolate_topping_checkbox);
+        EditText nameText = (EditText) findViewById(R.id.name_edit_text);
+        String message = createOrderSummary(price, whippedCheckBox.isChecked(), chocolateCheckbox.isChecked(), nameText.getText().toString());
         displayMessage(message);
     }
 
@@ -73,11 +78,16 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Method that creates an order summar
      * @param price of coffee
+     * @param isWhipped boolean value - has whipped cream been added?
+     * @param hasChocolate boolean value - has chocolate been added?
+     * @param nameText String - order's name
      * @return message of order summary
      */
-    private String createOrderSummary(int price) {
+    private String createOrderSummary(int price, boolean isWhipped, boolean hasChocolate, String nameText) {
         String message;
-        message = "Name: Jimbo";
+        message = nameText;
+        message += "\nWhip Added? " + isWhipped;
+        message += "\nHas Chocolate? " + hasChocolate;
         message += "\nQuantity: " + mQuantity;
         message += "\nTotal: " + NumberFormat.getCurrencyInstance().format(price);
         message += "\nThanks";
