@@ -1,5 +1,7 @@
 package com.android.example.justjava;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
     /**
     * Submit order function - this is called by onClick of the Order button
+    * creates an order summary, subject and sends in email.
     */
     public void submitOrder(View view) {
         CheckBox whippedCheckBox = (CheckBox) findViewById(R.id.whipped_topping_checkbox);
@@ -58,8 +61,11 @@ public class MainActivity extends AppCompatActivity {
         int price = calculatePrice(isWhipped, isChocolate);
         String name = nameText.getText().toString();
 
+        //Compose the message and send
         String message = createOrderSummary(price, isWhipped, isChocolate, name);
-        displayMessage(message);
+        String subject = "JustJava order for " + name;
+        composeEmail(subject, message);
+
     }
 
     /**
@@ -91,16 +97,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Method that displayes price text view message
-     * @param message to be displayed
-     */
-    private void displayMessage(String message) {
-        TextView orderSummaryTextView = (TextView) findViewById(R.id.order_summary_text_view);
-        orderSummaryTextView.setText(message);
-    }
-
-    /**
-     * Method that creates an order summar
+     * Method that creates an order summary
      * @param price of coffee
      * @param isWhipped boolean value - has whipped cream been added?
      * @param hasChocolate boolean value - has chocolate been added?
@@ -109,12 +106,27 @@ public class MainActivity extends AppCompatActivity {
      */
     private String createOrderSummary(int price, boolean isWhipped, boolean hasChocolate, String nameText) {
         String message;
-        message = nameText;
+        message = "Name: " + nameText;
         message += "\nWhip Added? " + isWhipped;
         message += "\nHas Chocolate? " + hasChocolate;
         message += "\nQuantity: " + mQuantity;
         message += "\nTotal: " + NumberFormat.getCurrencyInstance().format(price);
         message += "\nThanks";
         return message;
+    }
+
+    /**
+     * composeEmail - creates a new intent and sends email with subject, message body strings
+     * @param subject subject of the email to send
+     * @param messageBody message body of the email
+     */
+    public void composeEmail(String subject, String messageBody) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        intent.putExtra(Intent.EXTRA_TEXT, messageBody);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent);
+        }
     }
 }
