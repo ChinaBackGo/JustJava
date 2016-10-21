@@ -1,3 +1,23 @@
-<resources>
-    <string name="app_name">JustJava</string>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name">Just Java</string>
+    <string name="name">Name</string>
+    <string name="toppings">Toppings</string>
+    <string name="whipped_topping">Whipped Topping</string>
+    <string name="chocolate">Chocolate</string>
+    <string name="quantity">Quantity</string>
+    <string name="order">Order</string>
+    <string name="default_order_quantity">2</string>
+    <string name="decrement_sign">-</string>
+    <string name="increment_sign">+</string>
+
+    <string name="thank_you">Thank You</string>
+
+    <string name="order_summary_name">Name: <xliff:g id="nameText" example="Bob">%s</xliff:g></string>
+    <string name="order_subject">Just Java order for: <xliff:g id="name" example="Bob">%s</xliff:g></string>
+    <string name="order_summary_chocolate">Has chocolate?: <xliff:g id="hasChocolate" exmaple="false">%b</xliff:g></string>
+    <string name="order_summary_whipped">Has whip?: <xliff:g id="hasWhip" exmaple="false">%b</xliff:g></string>
+    <string name="order_summary_total">Total: <xliff:g id="price" exmaple="$1.00">%s</xliff:g></string>
+    <string name="order_summary_quantity">Quantity: <xliff:g id="mQuantity" exmaple="5">%d</xliff:g></string>
+
 </resources>

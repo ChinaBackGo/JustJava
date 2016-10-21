@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Compose the message and send
         String message = createOrderSummary(price, isWhipped, isChocolate, name);
-        String subject = "JustJava order for " + name;
+        String subject = getString(R.string.order_subject, name);
         composeEmail(subject, message);
 
     }
@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     */
     private void update () {
         TextView quantityTextView = (TextView) findViewById(R.id.quantity_text_view);
-        quantityTextView.setText("Cups: " + mQuantity);
+        quantityTextView.setText("" + mQuantity);
     }
 
     /**
@@ -99,19 +99,19 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Method that creates an order summary
      * @param price of coffee
-     * @param isWhipped boolean value - has whipped cream been added?
+     * @param hasWhip boolean value - has whipped cream been added?
      * @param hasChocolate boolean value - has chocolate been added?
      * @param nameText String - order's name
      * @return message of order summary
      */
-    private String createOrderSummary(int price, boolean isWhipped, boolean hasChocolate, String nameText) {
+    private String createOrderSummary(int price, boolean hasWhip, boolean hasChocolate, String nameText) {
         String message;
-        message = "Name: " + nameText;
-        message += "\nWhip Added? " + isWhipped;
-        message += "\nHas Chocolate? " + hasChocolate;
-        message += "\nQuantity: " + mQuantity;
-        message += "\nTotal: " + NumberFormat.getCurrencyInstance().format(price);
-        message += "\nThanks";
+        message = getString(R.string.order_summary_name, nameText);
+        message += "\n" + getString(R.string.order_summary_whipped, hasWhip);
+        message += "\n" + getString(R.string.order_summary_chocolate, hasChocolate);
+        message += "\n" + getString(R.string.order_summary_quantity, mQuantity);
+        message += "\n" + getString(R.string.order_summary_total, NumberFormat.getCurrencyInstance().format(price));
+        message += "\n" + getString(R.string.thank_you);
         return message;
     }
 
