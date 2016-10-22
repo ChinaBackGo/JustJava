@@ -1,5 +1,5 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <!-- Strings for app-->
     <string name="app_name">Just Java</string>
     <string name="name">Name</string>
     <string name="toppings">Toppings</string>
@@ -10,9 +10,13 @@
     <string name="default_order_quantity">2</string>
     <string name="decrement_sign">-</string>
     <string name="increment_sign">+</string>
-
     <string name="thank_you">Thank You</string>
 
+    <!-- Strings for Toast Message -->
+    <string name="toast_too_many_cups">You can not order more than 100 cups of coffee</string>
+    <string name="toast_too_few_cups">You must order at least 1 coffee</string>
+
+    <!-- Strings with xliff -->
     <string name="order_summary_name">Name: <xliff:g id="nameText" example="Bob">%s</xliff:g></string>
     <string name="order_subject">Just Java order for: <xliff:g id="name" example="Bob">%s</xliff:g></string>
     <string name="order_summary_chocolate">Has chocolate?: <xliff:g id="hasChocolate" exmaple="false">%b</xliff:g></string>
